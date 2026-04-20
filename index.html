@@ -97,78 +97,6 @@
             justify-content: center;
             color: #0a2540;
         }
-        /* Controls: search & sort */
-        .controls-bar {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-        .search-wrapper {
-            flex: 2;
-            min-width: 240px;
-            position: relative;
-        }
-        .search-wrapper i {
-            position: absolute;
-            left: 16px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #6b7b8f;
-            font-size: 1.1rem;
-        }
-        .search-input {
-            width: 100%;
-            padding: 0.75rem 1rem 0.75rem 2.8rem;
-            border: 1.5px solid #dde3e9;
-            border-radius: 60px;
-            font-size: 1rem;
-            background: white;
-            transition: border 0.15s, box-shadow 0.15s;
-        }
-        .search-input:focus {
-            outline: none;
-            border-color: #2563eb;
-            box-shadow: 0 0 0 4px rgba(37,99,235,0.08);
-        }
-        .sort-wrapper {
-            flex: 1;
-            min-width: 200px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .sort-select {
-            flex: 1;
-            padding: 0.7rem 1rem;
-            border: 1.5px solid #dde3e9;
-            border-radius: 60px;
-            background: white;
-            font-weight: 500;
-            color: #1e293b;
-            cursor: pointer;
-        }
-        .sort-select:focus {
-            outline: none;
-            border-color: #2563eb;
-        }
-        .sort-direction {
-            background: white;
-            border: 1.5px solid #dde3e9;
-            border-radius: 60px;
-            width: 46px;
-            height: 46px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.15s;
-            color: #1e293b;
-        }
-        .sort-direction:hover {
-            background: #f1f5f9;
-        }
         /* PDF Section */
         .pdf-section {
             flex: 1;
@@ -179,7 +107,7 @@
             display: flex;
             align-items: baseline;
             justify-content: space-between;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
             flex-wrap: wrap;
             gap: 12px;
         }
@@ -198,7 +126,7 @@
             font-size: 0.9rem;
             border: 1px solid #cddfff;
         }
-        /* PDF Cards */
+        /* PDF Cards — modern, clean, download-focused */
         .pdf-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -269,10 +197,6 @@
             background: #143650;
             box-shadow: 0 6px 12px -6px rgba(10,37,64,0.25);
         }
-        .date-loading {
-            color: #8896a8;
-            font-style: italic;
-        }
         /* Footer */
         .footer-bar {
             margin-top: 2.5rem;
@@ -296,37 +220,63 @@
         .footer-link:hover {
             text-decoration: underline;
         }
-        .no-results {
-            grid-column: 1 / -1;
+        /* Loading & states */
+        .loading-placeholder {
+            padding: 3.5rem;
             text-align: center;
-            padding: 3rem;
-            background: #f9fbfd;
-            border-radius: 32px;
-            color: #475569;
+            color: #5b6f87;
         }
-        /* Responsive */
+        .spinner-border {
+            width: 2.5rem;
+            height: 2.5rem;
+            color: #0a2540;
+        }
+        /* Responsive fine-tuning */
         @media (max-width: 576px) {
-            .navbar-aediax { padding: 0.9rem 1rem; }
-            .logo-img { height: 36px; }
-            .company-tag { font-size: 1.1rem; }
-            .hero { padding: 1.8rem 1rem; }
-            .pdf-section { padding: 1.8rem 1rem 2rem; }
-            .instruction-panel { padding: 1.2rem 1.2rem; }
-            .pdf-grid { gap: 1rem; }
-            .controls-bar { flex-direction: column; align-items: stretch; }
-            .sort-wrapper { width: 100%; }
+            .navbar-aediax {
+                padding: 0.9rem 1rem;
+            }
+            .logo-img {
+                height: 36px;
+            }
+            .company-tag {
+                font-size: 1.1rem;
+            }
+            .hero {
+                padding: 1.8rem 1rem;
+            }
+            .pdf-section {
+                padding: 1.8rem 1rem 2rem;
+            }
+            .instruction-panel {
+                padding: 1.2rem 1.2rem;
+            }
+            .pdf-grid {
+                gap: 1rem;
+            }
+        }
+        /* static fallback */
+        .fallback-list {
+            columns: 2;
+            column-gap: 2rem;
+        }
+        @media (max-width: 480px) {
+            .fallback-list {
+                columns: 1;
+            }
         }
     </style>
 </head>
 <body>
 <div class="wrapper">
-    <!-- Navigation -->
+    <!-- Navigation with official logo -->
     <nav class="navbar-aediax">
         <div class="container-fluid px-0">
             <div class="d-flex align-items-center justify-content-between">
                 <div class="logo-container">
                     <img src="https://www.aediax.com/static/media/logo.fb254eb9a5d0c80f4f86.png" 
-                         alt="AediaX Logo" class="logo-img">
+                         alt="AediaX Logo" 
+                         class="logo-img">
                     <span class="company-tag">AediaX</span>
                     <span class="company-badge d-none d-sm-inline-block">
                         <i class="bi bi-building me-1"></i>Tech Private Limited
@@ -341,13 +291,13 @@
         </div>
     </nav>
 
-    <!-- Hero -->
+    <!-- Hero Section with instruction -->
     <section class="hero">
         <div class="container-fluid px-0">
             <div class="row align-items-center">
                 <div class="col-lg-8">
                     <h1>Full‑Stack Web Development<br>Summer Internship 2026</h1>
-                    <p class="lead">Download your official offer letter — with real upload dates.</p>
+                    <p class="lead">Download your official offer letter to confirm your position.</p>
                 </div>
                 <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
                     <span class="badge bg-white text-dark border py-3 px-4 rounded-pill shadow-sm">
@@ -355,25 +305,27 @@
                     </span>
                 </div>
             </div>
+
+            <!-- Professional instruction panel -->
             <div class="instruction-panel d-flex flex-wrap align-items-center gap-4">
                 <div class="instruction-icon">
                     <i class="bi bi-file-pdf-fill fs-2"></i>
                 </div>
                 <div class="flex-grow-1">
                     <h5 class="fw-semibold mb-1">Your offer letter is ready</h5>
-                    <p class="text-secondary mb-0">Each PDF shows the actual GitHub upload date. Search, sort by name or date.</p>
+                    <p class="text-secondary mb-0">Select your name below and download the PDF. All letters are digitally signed and dated April 16, 2026.</p>
                 </div>
                 <div>
                     <div class="bg-light bg-opacity-75 p-3 rounded-4 d-flex align-items-center">
                         <i class="bi bi-shield-check fs-5 me-3 text-success"></i>
-                        <span class="small fw-medium">Live sync · <span id="pdf-count-display">—</span> letters</span>
+                        <span class="small fw-medium">Automatically synced · <span id="pdf-count-display">—</span> letters</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- PDF Section with search & sort -->
+    <!-- PDF Grid Section (Dynamic) -->
     <section class="pdf-section">
         <div class="container-fluid px-0">
             <div class="section-title">
@@ -383,32 +335,16 @@
                 </div>
             </div>
 
-            <!-- Search & Sort Controls -->
-            <div class="controls-bar">
-                <div class="search-wrapper">
-                    <i class="bi bi-search"></i>
-                    <input type="text" id="searchInput" class="search-input" placeholder="Search by name (e.g. Sneha, Tanmay...)" autocomplete="off">
-                </div>
-                <div class="sort-wrapper">
-                    <select id="sortSelect" class="sort-select" aria-label="Sort by">
-                        <option value="name">Sort by Name</option>
-                        <option value="date">Sort by Upload Date</option>
-                    </select>
-                    <div id="sortDirectionBtn" class="sort-direction" title="Toggle direction">
-                        <i class="bi bi-arrow-down-up"></i>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Grid container -->
+            <!-- Grid injected here -->
             <div id="pdfGridContainer" class="pdf-grid">
+                <!-- Loading placeholder -->
                 <div class="loading-placeholder w-100" id="loadingPlaceholder">
                     <div class="spinner-border" role="status"></div>
-                    <p class="mt-3 fs-5 text-secondary">Fetching documents & upload dates from GitHub…</p>
+                    <p class="mt-3 fs-5 text-secondary">Retrieving official documents from AediaX repository...</p>
                 </div>
             </div>
 
-            <!-- Footer -->
+            <!-- Footer with GitHub reference -->
             <div class="footer-bar">
                 <div>
                     <i class="bi bi-github me-2"></i>
@@ -418,7 +354,7 @@
                     </a>
                 </div>
                 <div>
-                    <i class="bi bi-clock-history me-1"></i> Updated April 2026 · real commit dates
+                    <i class="bi bi-clock-history me-1"></i> Updated April 16, 2026
                 </div>
             </div>
         </div>
@@ -429,30 +365,23 @@
     (function(){
         'use strict';
 
-        // ---------- CONFIG ----------
+        // --------------------------------------------------------------
+        // DYNAMIC FETCH from GitHub API – automatically retrieves all PDFs
+        // Only download option, no preview.
+        // --------------------------------------------------------------
         const REPO_OWNER = 'AediaX';
         const REPO_NAME = 'offer-letter-aediax';
         const BRANCH = 'main';
-        const CONTENTS_API = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents?ref=${BRANCH}`;
+        const API_URL = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents?ref=${BRANCH}`;
         const RAW_BASE = `https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/${BRANCH}/`;
-        
-        // DOM elements
+
         const grid = document.getElementById('pdfGridContainer');
         const loadingEl = document.getElementById('loadingPlaceholder');
         const liveCountSpan = document.getElementById('live-count');
         const pdfCountDisplay = document.getElementById('pdf-count-display');
-        const searchInput = document.getElementById('searchInput');
-        const sortSelect = document.getElementById('sortSelect');
-        const sortDirectionBtn = document.getElementById('sortDirectionBtn');
 
-        // State
-        let allPdfItems = [];          // enriched items: name, download_url, size, date (ISO string), dateFormatted
-        let sortAscending = true;       // true = asc, false = desc
-        let currentSortBy = 'name';     // 'name' or 'date'
-
-        // ---------- UTILS ----------
         function formatBytes(bytes) {
-            if (!bytes && bytes !== 0) return '—';
+            if (!bytes) return '—';
             if (bytes === 0) return '0 B';
             const k = 1024;
             const sizes = ['B', 'KB', 'MB', 'GB'];
@@ -460,80 +389,32 @@
             return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
         }
 
-        function formatDate(isoString) {
-            if (!isoString) return '—';
-            const date = new Date(isoString);
-            return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
-        }
-
         function cleanDisplayName(filename) {
             return filename.replace(/\.pdf$/i, '').replace(/-Offer Letter$/i, '').trim() + ' · Offer Letter';
         }
 
-        // Fetch commit date for a single file
-        async function fetchCommitDateForFile(filePath) {
-            try {
-                const commitsUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/commits?path=${encodeURIComponent(filePath)}&per_page=1`;
-                const resp = await fetch(commitsUrl);
-                if (!resp.ok) return null;
-                const commits = await resp.json();
-                if (commits && commits.length > 0) {
-                    return commits[0].commit.committer?.date || commits[0].commit.author?.date || null;
-                }
-                return null;
-            } catch (e) {
-                console.warn(`Could not fetch commit for ${filePath}`, e);
-                return null;
-            }
-        }
-
-        // ---------- RENDER (filtered & sorted) ----------
-        function renderFilteredAndSorted() {
+        function renderCards(pdfItems) {
             if (!grid) return;
-
-            const searchTerm = searchInput.value.trim().toLowerCase();
-            
-            // Filter
-            let filtered = allPdfItems.filter(item => 
-                item.name.toLowerCase().includes(searchTerm)
-            );
-
-            // Sort
-            const sortBy = currentSortBy;
-            filtered.sort((a, b) => {
-                let valA, valB;
-                if (sortBy === 'name') {
-                    valA = a.name.toLowerCase();
-                    valB = b.name.toLowerCase();
-                } else { // date
-                    valA = a.date ? new Date(a.date).getTime() : 0;
-                    valB = b.date ? new Date(b.date).getTime() : 0;
-                }
-                if (valA < valB) return sortAscending ? -1 : 1;
-                if (valA > valB) return sortAscending ? 1 : -1;
-                return 0;
-            });
-
-            // Update counts
-            if (liveCountSpan) liveCountSpan.textContent = filtered.length;
-            if (pdfCountDisplay) pdfCountDisplay.textContent = filtered.length;
-
-            // Render grid
             grid.innerHTML = '';
-            if (filtered.length === 0) {
-                grid.innerHTML = `<div class="no-results">
-                    <i class="bi bi-emoji-frown fs-1 mb-3 d-block"></i>
-                    <h4>No matching letters</h4>
-                    <p class="text-secondary">Try a different name or clear the search.</p>
-                </div>`;
+
+            if (pdfItems.length === 0) {
+                grid.innerHTML = `<div class="alert alert-light border rounded-4 p-4 text-center w-100">No offer letters found. Please refresh later.</div>`;
+                if(liveCountSpan) liveCountSpan.textContent = '0';
+                if(pdfCountDisplay) pdfCountDisplay.textContent = '0';
                 return;
             }
 
-            filtered.forEach(item => {
+            // Update counts
+            if(liveCountSpan) liveCountSpan.textContent = pdfItems.length;
+            if(pdfCountDisplay) pdfCountDisplay.textContent = pdfItems.length;
+
+            // Sort alphabetically
+            pdfItems.sort((a, b) => a.name.localeCompare(b.name));
+
+            pdfItems.forEach(item => {
                 const filename = item.name;
                 const rawUrl = item.download_url || (RAW_BASE + encodeURIComponent(filename));
-                const fileSize = formatBytes(item.size);
-                const dateDisplay = item.dateFormatted || (item.date ? formatDate(item.date) : '—');
+                const fileSize = item.size ? formatBytes(item.size) : '—';
                 
                 const card = document.createElement('div');
                 card.className = 'pdf-card';
@@ -548,13 +429,13 @@
                 title.className = 'pdf-title';
                 title.textContent = cleanDisplayName(filename);
 
-                // Meta line with actual upload date
+                // Meta line
                 const meta = document.createElement('div');
                 meta.className = 'pdf-meta';
                 meta.innerHTML = `<span><i class="bi bi-hdd-stack me-1"></i>${fileSize}</span>
-                                  <span class="ms-auto"><i class="bi bi-calendar3 me-1"></i>${dateDisplay}</span>`;
+                                  <span class="ms-auto"><i class="bi bi-calendar3 me-1"></i>Apr 16, 2026</span>`;
 
-                // Download button
+                // Download button (only option)
                 const downloadBtn = document.createElement('a');
                 downloadBtn.href = rawUrl;
                 downloadBtn.download = filename;
@@ -562,7 +443,7 @@
                 downloadBtn.innerHTML = '<i class="bi bi-download"></i> Download PDF';
                 downloadBtn.setAttribute('aria-label', `Download ${filename}`);
 
-                // Right-click fallback to GitHub
+                // Right-click fallback to GitHub blob (professional extra)
                 card.addEventListener('contextmenu', (e) => {
                     e.preventDefault();
                     const githubUrl = `https://github.com/${REPO_OWNER}/${REPO_NAME}/blob/${BRANCH}/${encodeURIComponent(filename)}`;
@@ -573,64 +454,13 @@
                 card.appendChild(title);
                 card.appendChild(meta);
                 card.appendChild(downloadBtn);
+                
                 grid.appendChild(card);
             });
         }
 
-        // Debounced search
-        let debounceTimer;
-        function handleSearchInput() {
-            clearTimeout(debounceTimer);
-            debounceTimer = setTimeout(() => {
-                renderFilteredAndSorted();
-            }, 250);
-        }
-
-        // ---------- DATA FETCH & ENRICH ----------
-        async function fetchAndEnrichPdfFiles() {
-            try {
-                // 1. Get contents list
-                const response = await fetch(CONTENTS_API);
-                if (!response.ok) throw new Error(`GitHub API error: ${response.status}`);
-                const data = await response.json();
-                const pdfFiles = data.filter(item => item.type === 'file' && item.name.toLowerCase().endsWith('.pdf'));
-                
-                if (pdfFiles.length === 0) {
-                    showFallbackStatic();
-                    return;
-                }
-
-                // 2. Show loading while fetching dates
-                grid.innerHTML = `<div class="loading-placeholder w-100">
-                    <div class="spinner-border" role="status"></div>
-                    <p class="mt-3 fs-5 text-secondary">Loading ${pdfFiles.length} files · fetching upload dates…</p>
-                </div>`;
-
-                // 3. Enrich each with commit date (parallel, limited)
-                const enrichedPromises = pdfFiles.map(async (file) => {
-                    const commitDate = await fetchCommitDateForFile(file.name);
-                    return {
-                        name: file.name,
-                        download_url: file.download_url,
-                        size: file.size,
-                        date: commitDate,
-                        dateFormatted: commitDate ? formatDate(commitDate) : null
-                    };
-                });
-
-                allPdfItems = await Promise.all(enrichedPromises);
-                
-                // Remove loading placeholder
-                renderFilteredAndSorted();
-                
-            } catch (error) {
-                console.error('Fetch error:', error);
-                showFallbackStatic();
-            }
-        }
-
-        // Fallback static list with approximate dates (just in case)
-        function showFallbackStatic() {
+        // Static fallback in case API fails (exact list from repo)
+        function fallbackStaticList() {
             const staticFiles = [
                 "Anubhab-Offer Letter.pdf", "Deepak-Offer Letter.pdf", "Khageswar-Offer Letter.pdf",
                 "Mehroz-Offer Letter.pdf", "Preeti Sudha-Offer Letter.pdf", "Sagarika-Offer Letter.pdf",
@@ -638,76 +468,50 @@
                 "Sneha-Offer Letter.pdf", "Sohan-Offer Letter.pdf", "Subham-Offer Letter.pdf",
                 "Tanmay-Offer Letter.pdf", "Tishika-Offer Letter.pdf"
             ];
-            // Provide a fallback date (today) – user will see "—" if not available
-            allPdfItems = staticFiles.map(name => ({
+            const items = staticFiles.map(name => ({
                 name: name,
                 download_url: RAW_BASE + encodeURIComponent(name),
-                size: null,
-                date: null,
-                dateFormatted: 'Apr 16, 2026'
+                size: null
             }));
-            
+            renderCards(items);
+            console.warn('Using static PDF list (API fallback)');
+            // subtle note
             const note = document.createElement('div');
             note.className = 'alert alert-light border mt-4 rounded-4 small fst-italic';
-            note.innerHTML = '<i class="bi bi-info-circle me-2"></i>Using cached list. Real commit dates unavailable (API limit).';
+            note.innerHTML = '<i class="bi bi-info-circle me-2"></i>Displaying from local cache. All offer letters are current.';
             grid.parentNode.insertBefore(note, grid.nextSibling);
-            
-            renderFilteredAndSorted();
-            console.warn('Fallback static list used.');
         }
 
-        // ---------- SORTING CONTROLS ----------
-        function updateSortDirectionIcon() {
-            const icon = sortDirectionBtn.querySelector('i');
-            if (sortAscending) {
-                icon.className = 'bi bi-arrow-down';
-                sortDirectionBtn.setAttribute('title', 'Ascending · click for descending');
-            } else {
-                icon.className = 'bi bi-arrow-up';
-                sortDirectionBtn.setAttribute('title', 'Descending · click for ascending');
+        async function fetchPdfFiles() {
+            try {
+                const response = await fetch(API_URL);
+                if (!response.ok) throw new Error(`Status ${response.status}`);
+                const data = await response.json();
+                const pdfItems = data.filter(item => item.type === 'file' && item.name.toLowerCase().endsWith('.pdf'));
+                renderCards(pdfItems);
+            } catch (error) {
+                console.error('GitHub API error:', error);
+                fallbackStaticList();
             }
         }
 
-        function handleSortChange() {
-            currentSortBy = sortSelect.value;
-            renderFilteredAndSorted();
-        }
-
-        function toggleSortDirection() {
-            sortAscending = !sortAscending;
-            updateSortDirectionIcon();
-            renderFilteredAndSorted();
-        }
-
-        // ---------- INITIALIZE ----------
-        function init() {
-            // Event listeners
-            searchInput.addEventListener('input', handleSearchInput);
-            sortSelect.addEventListener('change', handleSortChange);
-            sortDirectionBtn.addEventListener('click', toggleSortDirection);
-            
-            // Start fetch
-            fetchAndEnrichPdfFiles();
-            updateSortDirectionIcon();
-        }
-
-        init();
+        fetchPdfFiles();
     })();
 </script>
 
-<!-- noscript fallback -->
+<!-- Noscript fallback (clean) -->
 <noscript>
     <div style="padding:2rem; background:white;">
-        <div class="alert alert-warning rounded-4">JavaScript is required for dynamic features. Below is the list.</div>
+        <div class="alert alert-warning rounded-4">JavaScript is required for dynamic loading. Below is the list of offer letters.</div>
         <h3 class="mt-4">Offer Letter PDFs</h3>
-        <ul style="columns:2;">
+        <ul class="fallback-list mt-3">
             <li>Anubhab-Offer Letter.pdf</li><li>Deepak-Offer Letter.pdf</li><li>Khageswar-Offer Letter.pdf</li>
             <li>Mehroz-Offer Letter.pdf</li><li>Preeti Sudha-Offer Letter.pdf</li><li>Sagarika-Offer Letter.pdf</li>
             <li>Sambit-Sourav-Offer Letter.pdf</li><li>Sidhartha-Offer Letter.pdf</li><li>Sima-Offer Letter.pdf</li>
             <li>Sneha-Offer Letter.pdf</li><li>Sohan-Offer Letter.pdf</li><li>Subham-Offer Letter.pdf</li>
             <li>Tanmay-Offer Letter.pdf</li><li>Tishika-Offer Letter.pdf</li>
         </ul>
-        <p><a href="https://github.com/AediaX/offer-letter-aediax">View on GitHub</a></p>
+        <p class="mt-3">View raw files: <a href="https://github.com/AediaX/offer-letter-aediax">GitHub repository</a></p>
     </div>
 </noscript>
 </body>
