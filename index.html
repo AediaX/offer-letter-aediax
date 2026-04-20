@@ -4,515 +4,577 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>AediaX · Full‑Stack Internship Offer Letters</title>
-    <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="https://www.aediax.com/favicon.ico">
-    <!-- Bootstrap 5 + Icons -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <!-- Modern Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --navy: #0a2540;
+            --navy-mid: #1e3a5f;
+            --blue: #3b82f6;
+            --red: #dc2626;
+            --border: #e2e8f0;
+            --surface: #f8fafc;
+            --text: #0b1c2e;
+            --muted: #64748b;
+            --light: #94a3b8;
         }
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: #ffffff;
-            color: #0b1c2e;
+            background: #f1f5f9;
+            color: var(--text);
             line-height: 1.5;
             -webkit-font-smoothing: antialiased;
-        }
-        .wrapper {
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            background: #ffffff;
         }
-        /* Navbar */
-        .navbar-aediax {
-            padding: 1rem 1.5rem;
-            border-bottom: 1px solid #eef2f6;
-            background: white;
+        .navbar {
+            position: sticky; top: 0; z-index: 200;
+            background: white; border-bottom: 1px solid var(--border);
+            padding: 0.9rem 2rem;
+            display: flex; align-items: center; justify-content: space-between; gap: 16px;
         }
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 12px;
+        .nav-left { display: flex; align-items: center; gap: 12px; }
+        .logo { height: 38px; width: auto; }
+        .brand { font-weight: 700; font-size: 1.2rem; letter-spacing: -0.02em; color: var(--navy); }
+        .brand-pill {
+            background: #f1f5f9; color: #334155; border: 1px solid var(--border);
+            padding: 0.2rem 0.75rem; border-radius: 40px; font-size: 0.72rem; font-weight: 500;
         }
-        .logo-img {
-            height: 44px;
-            width: auto;
+        .nav-link {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 0.45rem 1.1rem; border: 1.5px solid var(--border);
+            border-radius: 40px; font-size: 0.82rem; font-weight: 500;
+            color: var(--navy); text-decoration: none; background: white;
+            transition: background .15s, border-color .15s;
         }
-        .company-tag {
-            font-weight: 600;
-            font-size: 1.25rem;
-            letter-spacing: -0.02em;
-            color: #0a2540;
-        }
-        .company-badge {
-            background: #f1f5f9;
-            color: #1e293b;
-            padding: 0.25rem 0.9rem;
-            border-radius: 40px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            border: 1px solid #e2e8f0;
-            margin-left: 8px;
-        }
-        /* Hero */
+        .nav-link:hover { background: #f1f5f9; border-color: #94a3b8; }
         .hero {
-            background: #ffffff;
-            border-bottom: 1px solid #edf2f7;
-            padding: 2.25rem 1.5rem;
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+            padding: 2.8rem 2rem 2.4rem; color: white;
         }
+        .hero-inner { max-width: 860px; }
         .hero h1 {
-            font-weight: 700;
-            font-size: clamp(1.8rem, 5vw, 2.6rem);
-            letter-spacing: -0.03em;
-            color: #0a2540;
-            margin-bottom: 0.5rem;
+            font-weight: 700; font-size: clamp(1.55rem, 3.5vw, 2.3rem);
+            letter-spacing: -0.03em; margin-bottom: 0.45rem;
         }
-        .hero .lead {
-            font-size: 1.2rem;
-            color: #425466;
-            font-weight: 400;
+        .hero p { color: rgba(255,255,255,.72); font-size: 1rem; }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 8px; margin-top: 1.2rem;
+            background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2);
+            padding: 0.45rem 1.1rem; border-radius: 40px; font-size: 0.82rem;
         }
-        .instruction-panel {
-            background: #fafcff;
-            border: 1px solid #e2eaf2;
-            border-radius: 28px;
-            padding: 1.5rem 1.8rem;
-            margin-top: 2rem;
-            box-shadow: 0 4px 10px -4px rgba(0,0,0,0.02);
+        .pulse { width: 8px; height: 8px; background: #4ade80; border-radius: 50%; flex-shrink: 0; animation: pulse 2s infinite; }
+        @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.35} }
+        .controls {
+            background: white; border-bottom: 1px solid var(--border);
+            padding: 1rem 2rem;
+            display: flex; flex-wrap: wrap; align-items: center; gap: 10px;
         }
-        .instruction-icon {
-            background: #e6edf8;
-            width: 52px;
-            height: 52px;
-            border-radius: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #0a2540;
+        .search-box { position: relative; flex: 1; min-width: 180px; max-width: 360px; }
+        .search-box i { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); color: var(--light); font-size: .95rem; pointer-events: none; }
+        .search-input {
+            width: 100%; padding: 0.58rem 1rem 0.58rem 2.5rem;
+            border: 1.5px solid var(--border); border-radius: 40px;
+            font-size: 0.87rem; font-family: inherit; color: var(--text);
+            background: var(--surface); outline: none;
+            transition: border-color .2s, box-shadow .2s;
         }
-        /* PDF Section */
-        .pdf-section {
-            flex: 1;
-            padding: 2.5rem 1.5rem 3rem;
-            background: #ffffff;
+        .search-input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(59,130,246,.12); background: white; }
+        .search-input::placeholder { color: var(--light); }
+        .ctrl-group { display: flex; align-items: center; gap: 7px; }
+        .ctrl-label { font-size: .75rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; white-space: nowrap; }
+        .ctrl-select {
+            padding: .55rem 2rem .55rem .9rem;
+            border: 1.5px solid var(--border); border-radius: 40px;
+            font-size: .82rem; font-family: inherit; color: #374151;
+            background: var(--surface) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%2394a3b8' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 10px center / 12px;
+            appearance: none; cursor: pointer; outline: none;
+            transition: border-color .2s;
         }
-        .section-title {
-            display: flex;
-            align-items: baseline;
-            justify-content: space-between;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-            gap: 12px;
+        .ctrl-select:focus { border-color: var(--blue); }
+        .results-tag {
+            margin-left: auto;
+            background: #eef2ff; color: #1d4ed8; border: 1px solid #c7d7ff;
+            border-radius: 40px; padding: .3rem .9rem; font-size: .8rem; font-weight: 500; white-space: nowrap;
         }
-        .section-title h2 {
-            font-weight: 650;
-            font-size: 1.8rem;
-            color: #0a2540;
-            letter-spacing: -0.02em;
+        .clear-btn {
+            display: none; align-items: center; gap: 5px;
+            background: none; border: 1.5px solid var(--border); border-radius: 40px;
+            padding: .45rem .9rem; font-size: .8rem; font-family: inherit;
+            cursor: pointer; color: var(--muted); transition: background .15s;
         }
-        .count-chip {
-            background: #eef2ff;
-            color: #1d4ed8;
-            border-radius: 40px;
-            padding: 0.4rem 1.2rem;
-            font-weight: 500;
-            font-size: 0.9rem;
-            border: 1px solid #cddfff;
-        }
-        /* PDF Cards — modern, clean, download-focused */
-        .pdf-grid {
+        .clear-btn:hover { background: #f1f5f9; }
+        .main { padding: 1.75rem 2rem 3rem; }
+        .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fill, minmax(255px, 1fr));
+            gap: 1.2rem;
         }
         .pdf-card {
-            background: white;
-            border: 1px solid #e6edf4;
-            border-radius: 24px;
-            padding: 1.6rem 1.2rem 1.2rem;
-            transition: all 0.2s ease;
-            box-shadow: 0 6px 12px -6px rgba(0,0,0,0.04);
-            display: flex;
-            flex-direction: column;
-            text-decoration: none;
-            color: #1e293b;
-            height: 100%;
+            background: white; border: 1.5px solid var(--border);
+            border-radius: 18px; padding: 1.3rem 1.1rem .95rem;
+            display: flex; flex-direction: column;
+            transition: border-color .2s, box-shadow .2s, transform .2s;
         }
         .pdf-card:hover {
-            border-color: #3b82f6;
-            box-shadow: 0 18px 28px -12px rgba(59,130,246,0.15);
-            transform: translateY(-3px);
-            background: #fdfdfe;
+            border-color: var(--blue);
+            box-shadow: 0 10px 24px -8px rgba(59,130,246,.2);
+            transform: translateY(-2px);
         }
-        .card-icon {
-            font-size: 2.8rem;
-            color: #dc2626;
-            margin-bottom: 1rem;
+        .card-pdf-icon { font-size: 2.3rem; color: var(--red); margin-bottom: .8rem; line-height: 1; }
+        .card-title { font-weight: 700; font-size: .97rem; color: var(--navy); margin-bottom: .15rem; line-height: 1.4; word-break: break-word; }
+        .card-filename { font-size: .7rem; color: var(--light); font-family: monospace; word-break: break-all; margin-bottom: .85rem; }
+        .card-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-bottom: .9rem; }
+        .meta-pill {
+            display: flex; align-items: center; gap: 5px;
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: 8px; padding: .3rem .55rem; font-size: .72rem; color: #475569;
         }
-        .pdf-title {
-            font-weight: 700;
-            font-size: 1.15rem;
-            margin-bottom: 0.5rem;
-            line-height: 1.4;
-            word-break: break-word;
+        .meta-pill i { color: var(--light); font-size: .78rem; flex-shrink: 0; }
+        .meta-pill.full { grid-column: 1 / -1; }
+        .badge-new {
+            display: inline-block; background: #dcfce7; color: #166534;
+            border-radius: 40px; padding: .12rem .55rem; font-size: .68rem; font-weight: 600; margin-left: 5px; vertical-align: middle;
         }
-        .pdf-meta {
-            color: #64748b;
-            font-size: 0.8rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+        .dl-btn {
             margin-top: auto;
-            padding-top: 14px;
-            border-top: 1px dashed #dce5ec;
+            display: flex; align-items: center; justify-content: center; gap: 7px;
+            background: var(--navy); color: white;
+            border: none; border-radius: 40px; padding: .58rem 1rem;
+            font-size: .83rem; font-weight: 600; font-family: inherit;
+            text-decoration: none; cursor: pointer;
+            transition: background .15s, box-shadow .15s;
         }
-        .download-btn-card {
-            margin-top: 14px;
-            background: #0a2540;
-            border: none;
-            border-radius: 40px;
-            padding: 0.6rem 1rem;
-            font-weight: 500;
-            font-size: 0.9rem;
-            color: white;
-            transition: background 0.15s, box-shadow 0.15s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            width: 100%;
-            border: 1px solid #0a2540;
+        .dl-btn:hover { background: #1a3a5c; box-shadow: 0 6px 14px -4px rgba(10,37,64,.3); color: white; }
+        .state-box {
+            grid-column: 1 / -1; display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            padding: 4rem 2rem; text-align: center; color: var(--muted);
         }
-        .download-btn-card i {
-            font-size: 1.1rem;
+        .state-box i { font-size: 3rem; color: #cbd5e1; margin-bottom: 1rem; }
+        .state-box h3 { font-size: 1.1rem; font-weight: 600; color: #374151; margin-bottom: .4rem; }
+        .state-box p { font-size: .88rem; max-width: 320px; }
+        .skel-card {
+            background: white; border: 1.5px solid var(--border);
+            border-radius: 18px; padding: 1.3rem 1.1rem .95rem;
+            display: flex; flex-direction: column; gap: 10px;
         }
-        .download-btn-card:hover {
-            background: #143650;
-            box-shadow: 0 6px 12px -6px rgba(10,37,64,0.25);
+        .skel {
+            border-radius: 8px;
+            background: linear-gradient(90deg, #f0f4f8 25%, #e4eaf2 50%, #f0f4f8 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
         }
-        /* Footer */
-        .footer-bar {
-            margin-top: 2.5rem;
-            padding-top: 1.8rem;
-            border-top: 1px solid #e9edf2;
-            font-size: 0.9rem;
-            color: #52637a;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-between;
+        @keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+        .toast {
+            position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 999;
+            background: #1e293b; color: white; border-radius: 12px;
+            padding: .75rem 1.2rem; font-size: .85rem; font-weight: 500;
+            display: flex; align-items: center; gap: 8px;
+            box-shadow: 0 8px 24px rgba(0,0,0,.2);
+            opacity: 0; transform: translateY(10px);
+            transition: opacity .3s, transform .3s;
+            pointer-events: none; max-width: 340px;
         }
-        .footer-link {
-            color: #0a2540;
-            font-weight: 500;
-            text-decoration: none;
+        .toast.show { opacity: 1; transform: translateY(0); }
+        .footer {
+            background: white; border-top: 1px solid var(--border);
+            padding: 1.2rem 2rem;
+            display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px;
+            font-size: .82rem; color: var(--muted);
         }
-        .footer-link i {
-            margin-right: 6px;
+        .footer a { color: var(--navy); font-weight: 600; text-decoration: none; }
+        .footer a:hover { text-decoration: underline; }
+        @media (max-width: 768px) {
+            .navbar { padding: .8rem 1rem; }
+            .hero { padding: 2rem 1rem 1.8rem; }
+            .controls { padding: .9rem 1rem; gap: 8px; }
+            .main { padding: 1.25rem 1rem 2rem; }
+            .footer { padding: 1rem; }
+            .grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; }
+            .results-tag { margin-left: 0; }
         }
-        .footer-link:hover {
-            text-decoration: underline;
-        }
-        /* Loading & states */
-        .loading-placeholder {
-            padding: 3.5rem;
-            text-align: center;
-            color: #5b6f87;
-        }
-        .spinner-border {
-            width: 2.5rem;
-            height: 2.5rem;
-            color: #0a2540;
-        }
-        /* Responsive fine-tuning */
-        @media (max-width: 576px) {
-            .navbar-aediax {
-                padding: 0.9rem 1rem;
-            }
-            .logo-img {
-                height: 36px;
-            }
-            .company-tag {
-                font-size: 1.1rem;
-            }
-            .hero {
-                padding: 1.8rem 1rem;
-            }
-            .pdf-section {
-                padding: 1.8rem 1rem 2rem;
-            }
-            .instruction-panel {
-                padding: 1.2rem 1.2rem;
-            }
-            .pdf-grid {
-                gap: 1rem;
-            }
-        }
-        /* static fallback */
-        .fallback-list {
-            columns: 2;
-            column-gap: 2rem;
-        }
-        @media (max-width: 480px) {
-            .fallback-list {
-                columns: 1;
-            }
+        @media (max-width: 500px) {
+            .brand-pill { display: none; }
+            .hero h1 { font-size: 1.4rem; }
+            .search-box { max-width: 100%; flex: 1 1 100%; }
+            .grid { grid-template-columns: 1fr; }
+            .ctrl-label { display: none; }
         }
     </style>
 </head>
 <body>
-<div class="wrapper">
-    <!-- Navigation with official logo -->
-    <nav class="navbar-aediax">
-        <div class="container-fluid px-0">
-            <div class="d-flex align-items-center justify-content-between">
-                <div class="logo-container">
-                    <img src="https://www.aediax.com/static/media/logo.fb254eb9a5d0c80f4f86.png" 
-                         alt="AediaX Logo" 
-                         class="logo-img">
-                    <span class="company-tag">AediaX</span>
-                    <span class="company-badge d-none d-sm-inline-block">
-                        <i class="bi bi-building me-1"></i>Tech Private Limited
-                    </span>
-                </div>
-                <div>
-                    <a href="https://www.aediax.com" target="_blank" rel="noopener" class="btn btn-outline-secondary rounded-pill px-4 py-2 border-1" style="--bs-btn-border-color: #cbd5e1; --bs-btn-hover-bg: #0a2540; --bs-btn-hover-color: white; --bs-btn-hover-border-color: #0a2540;">
-                        <i class="bi bi-globe2 me-2"></i>aediax.com
-                    </a>
-                </div>
-            </div>
+
+<nav class="navbar">
+    <div class="nav-left">
+        <img src="https://www.aediax.com/static/media/logo.fb254eb9a5d0c80f4f86.png" alt="AediaX" class="logo">
+        <span class="brand">AediaX</span>
+        <span class="brand-pill"><i class="bi bi-building" style="font-size:.7rem;margin-right:3px;"></i>Tech Private Limited</span>
+    </div>
+    <a href="https://www.aediax.com" target="_blank" rel="noopener" class="nav-link">
+        <i class="bi bi-globe2"></i> aediax.com
+    </a>
+</nav>
+
+<section class="hero">
+    <div class="hero-inner">
+        <h1>Full‑Stack Web Development<br>Summer Internship 2026</h1>
+        <p>Download your official offer letter to confirm your position at AediaX.</p>
+        <div class="hero-badge">
+            <span class="pulse"></span>
+            <span>Cohort starts June 2026 &nbsp;·&nbsp; Letters signed April 16, 2026</span>
         </div>
-    </nav>
+    </div>
+</section>
 
-    <!-- Hero Section with instruction -->
-    <section class="hero">
-        <div class="container-fluid px-0">
-            <div class="row align-items-center">
-                <div class="col-lg-8">
-                    <h1>Full‑Stack Web Development<br>Summer Internship 2026</h1>
-                    <p class="lead">Download your official offer letter to confirm your position.</p>
-                </div>
-                <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
-                    <span class="badge bg-white text-dark border py-3 px-4 rounded-pill shadow-sm">
-                        <i class="bi bi-calendar-check me-2 text-primary"></i> Cohort starts June 2026
-                    </span>
-                </div>
-            </div>
+<div class="controls">
+    <div class="search-box">
+        <i class="bi bi-search"></i>
+        <input type="text" class="search-input" id="searchInput" placeholder="Search by name…" autocomplete="off" spellcheck="false">
+    </div>
+    <div class="ctrl-group">
+        <span class="ctrl-label">Sort</span>
+        <select class="ctrl-select" id="sortSelect">
+            <option value="name-asc">Name A → Z</option>
+            <option value="name-desc">Name Z → A</option>
+            <option value="date-desc">Newest first</option>
+            <option value="date-asc">Oldest first</option>
+            <option value="size-desc">Largest first</option>
+            <option value="size-asc">Smallest first</option>
+        </select>
+    </div>
+    <div class="ctrl-group">
+        <span class="ctrl-label">Date</span>
+        <select class="ctrl-select" id="dateFilter">
+            <option value="all">All dates</option>
+            <option value="last7">Last 7 days</option>
+            <option value="last30">Last 30 days</option>
+            <option value="last90">Last 90 days</option>
+        </select>
+    </div>
+    <button class="clear-btn" id="clearBtn"><i class="bi bi-x"></i> Clear</button>
+    <span class="results-tag" id="resultsTag">Loading…</span>
+</div>
 
-            <!-- Professional instruction panel -->
-            <div class="instruction-panel d-flex flex-wrap align-items-center gap-4">
-                <div class="instruction-icon">
-                    <i class="bi bi-file-pdf-fill fs-2"></i>
-                </div>
-                <div class="flex-grow-1">
-                    <h5 class="fw-semibold mb-1">Your offer letter is ready</h5>
-                    <p class="text-secondary mb-0">Select your name below and download the PDF. All letters are digitally signed and dated April 16, 2026.</p>
-                </div>
-                <div>
-                    <div class="bg-light bg-opacity-75 p-3 rounded-4 d-flex align-items-center">
-                        <i class="bi bi-shield-check fs-5 me-3 text-success"></i>
-                        <span class="small fw-medium">Automatically synced · <span id="pdf-count-display">—</span> letters</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<main class="main">
+    <div class="grid" id="grid">
+        <div class="skel-card"><div class="skel" style="width:44px;height:44px;border-radius:10px;"></div><div class="skel" style="height:16px;width:75%;"></div><div class="skel" style="height:11px;width:55%;"></div><div class="skel" style="height:38px;border-radius:40px;margin-top:6px;"></div></div>
+        <div class="skel-card"><div class="skel" style="width:44px;height:44px;border-radius:10px;"></div><div class="skel" style="height:16px;width:80%;"></div><div class="skel" style="height:11px;width:60%;"></div><div class="skel" style="height:38px;border-radius:40px;margin-top:6px;"></div></div>
+        <div class="skel-card"><div class="skel" style="width:44px;height:44px;border-radius:10px;"></div><div class="skel" style="height:16px;width:65%;"></div><div class="skel" style="height:11px;width:50%;"></div><div class="skel" style="height:38px;border-radius:40px;margin-top:6px;"></div></div>
+        <div class="skel-card"><div class="skel" style="width:44px;height:44px;border-radius:10px;"></div><div class="skel" style="height:16px;width:70%;"></div><div class="skel" style="height:11px;width:55%;"></div><div class="skel" style="height:38px;border-radius:40px;margin-top:6px;"></div></div>
+        <div class="skel-card"><div class="skel" style="width:44px;height:44px;border-radius:10px;"></div><div class="skel" style="height:16px;width:78%;"></div><div class="skel" style="height:11px;width:58%;"></div><div class="skel" style="height:38px;border-radius:40px;margin-top:6px;"></div></div>
+        <div class="skel-card"><div class="skel" style="width:44px;height:44px;border-radius:10px;"></div><div class="skel" style="height:16px;width:72%;"></div><div class="skel" style="height:11px;width:52%;"></div><div class="skel" style="height:38px;border-radius:40px;margin-top:6px;"></div></div>
+    </div>
+</main>
 
-    <!-- PDF Grid Section (Dynamic) -->
-    <section class="pdf-section">
-        <div class="container-fluid px-0">
-            <div class="section-title">
-                <h2><i class="bi bi-files me-3" style="color: #2563eb;"></i>Offer letters</h2>
-                <div class="count-chip">
-                    <i class="bi bi-database me-1"></i> <span id="live-count">—</span> documents
-                </div>
-            </div>
+<footer class="footer">
+    <div>
+        <i class="bi bi-github" style="margin-right:6px;"></i>
+        Sourced from <a href="https://github.com/AediaX/offer-letter-aediax" target="_blank" rel="noopener">AediaX/offer-letter-aediax <i class="bi bi-box-arrow-up-right" style="font-size:.7rem;"></i></a>
+    </div>
+    <div>
+        <i class="bi bi-shield-check" style="color:#16a34a;margin-right:5px;"></i>
+        Digitally signed · <span id="totalCount">—</span> offer letters loaded
+    </div>
+</footer>
 
-            <!-- Grid injected here -->
-            <div id="pdfGridContainer" class="pdf-grid">
-                <!-- Loading placeholder -->
-                <div class="loading-placeholder w-100" id="loadingPlaceholder">
-                    <div class="spinner-border" role="status"></div>
-                    <p class="mt-3 fs-5 text-secondary">Retrieving official documents from AediaX repository...</p>
-                </div>
-            </div>
-
-            <!-- Footer with GitHub reference -->
-            <div class="footer-bar">
-                <div>
-                    <i class="bi bi-github me-2"></i>
-                    <span>Securely sourced from </span>
-                    <a href="https://github.com/AediaX/offer-letter-aediax" target="_blank" class="footer-link">
-                        AediaX/offer-letter-aediax <i class="bi bi-box-arrow-up-right ms-1 small"></i>
-                    </a>
-                </div>
-                <div>
-                    <i class="bi bi-clock-history me-1"></i> Updated April 16, 2026
-                </div>
-            </div>
-        </div>
-    </section>
+<div class="toast" id="toast">
+    <i class="bi bi-info-circle" style="flex-shrink:0;"></i>
+    <span id="toastMsg"></span>
 </div>
 
 <script>
-    (function(){
-        'use strict';
+(function () {
+    'use strict';
 
-        // --------------------------------------------------------------
-        // DYNAMIC FETCH from GitHub API – automatically retrieves all PDFs
-        // Only download option, no preview.
-        // --------------------------------------------------------------
-        const REPO_OWNER = 'AediaX';
-        const REPO_NAME = 'offer-letter-aediax';
-        const BRANCH = 'main';
-        const API_URL = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents?ref=${BRANCH}`;
-        const RAW_BASE = `https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/${BRANCH}/`;
+    var OWNER  = 'AediaX';
+    var REPO   = 'offer-letter-aediax';
+    var BRANCH = 'main';
 
-        const grid = document.getElementById('pdfGridContainer');
-        const loadingEl = document.getElementById('loadingPlaceholder');
-        const liveCountSpan = document.getElementById('live-count');
-        const pdfCountDisplay = document.getElementById('pdf-count-display');
+    // Git Trees API with recursive=1 returns EVERY blob in the entire repo in one request
+    var TREE_API    = 'https://api.github.com/repos/' + OWNER + '/' + REPO + '/git/trees/' + BRANCH + '?recursive=1';
+    var COMMITS_API = function(path) {
+        return 'https://api.github.com/repos/' + OWNER + '/' + REPO + '/commits?path=' + encodeURIComponent(path) + '&sha=' + BRANCH + '&per_page=1';
+    };
+    var RAW_BASE = 'https://raw.githubusercontent.com/' + OWNER + '/' + REPO + '/' + BRANCH + '/';
 
-        function formatBytes(bytes) {
-            if (!bytes) return '—';
-            if (bytes === 0) return '0 B';
-            const k = 1024;
-            const sizes = ['B', 'KB', 'MB', 'GB'];
-            const i = Math.floor(Math.log(bytes) / Math.log(k));
-            return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
+    var grid        = document.getElementById('grid');
+    var searchInput = document.getElementById('searchInput');
+    var sortSelect  = document.getElementById('sortSelect');
+    var dateFilter  = document.getElementById('dateFilter');
+    var resultsTag  = document.getElementById('resultsTag');
+    var clearBtn    = document.getElementById('clearBtn');
+    var totalCount  = document.getElementById('totalCount');
+    var toast       = document.getElementById('toast');
+    var toastMsg    = document.getElementById('toastMsg');
+
+    var allItems = [];
+    var toastTimer;
+    var nowMs = Date.now();
+
+    function fmtBytes(b) {
+        if (!b) return '—';
+        var k = 1024, s = ['B','KB','MB','GB'];
+        var i = Math.floor(Math.log(b) / Math.log(k));
+        return (b / Math.pow(k, i)).toFixed(1) + ' ' + s[i];
+    }
+    function fmtDate(iso) {
+        if (!iso) return '—';
+        return new Date(iso).toLocaleDateString('en-IN', { day:'2-digit', month:'short', year:'numeric' });
+    }
+    function timeAgo(iso) {
+        if (!iso) return null;
+        var d = Math.floor((nowMs - new Date(iso)) / 86400000);
+        if (d === 0) return 'Today';
+        if (d === 1) return 'Yesterday';
+        if (d < 7)   return d + 'd ago';
+        if (d < 30)  return Math.floor(d/7) + 'w ago';
+        if (d < 365) return Math.floor(d/30) + 'mo ago';
+        return Math.floor(d/365) + 'yr ago';
+    }
+    function isNew(iso) { return iso && (nowMs - new Date(iso)) < 7 * 86400000; }
+
+    function displayName(path) {
+        return path
+            .replace(/^.*\//, '')
+            .replace(/\.pdf$/i, '')
+            .replace(/-Offer\s*Letter$/i, '')
+            .replace(/_Offer\s*Letter$/i, '')
+            .trim();
+    }
+    function escHtml(s) {
+        return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+    function safeId(path) { return path.replace(/[^a-z0-9]/gi, '_'); }
+
+    function showToast(msg, ms) {
+        clearTimeout(toastTimer);
+        toastMsg.textContent = msg;
+        toast.classList.add('show');
+        toastTimer = setTimeout(function(){ toast.classList.remove('show'); }, ms || 5000);
+    }
+
+    function applyAndRender() {
+        var q     = searchInput.value.trim().toLowerCase();
+        var sort  = sortSelect.value;
+        var range = dateFilter.value;
+        var hasFilter = q || range !== 'all';
+
+        var list = allItems.filter(function(item) {
+            if (q) {
+                var n = displayName(item.path).toLowerCase();
+                var p = item.path.toLowerCase();
+                if (n.indexOf(q) === -1 && p.indexOf(q) === -1) return false;
+            }
+            if (range !== 'all' && item.date) {
+                var days = { last7:7, last30:30, last90:90 }[range];
+                if ((nowMs - new Date(item.date)) > days * 86400000) return false;
+            }
+            return true;
+        });
+
+        list.sort(function(a, b) {
+            switch(sort) {
+                case 'name-asc':  return displayName(a.path).localeCompare(displayName(b.path));
+                case 'name-desc': return displayName(b.path).localeCompare(displayName(a.path));
+                case 'date-desc': return (new Date(b.date||0)) - (new Date(a.date||0));
+                case 'date-asc':  return (new Date(a.date||0)) - (new Date(b.date||0));
+                case 'size-desc': return (b.size||0) - (a.size||0);
+                case 'size-asc':  return (a.size||0) - (b.size||0);
+            }
+        });
+
+        resultsTag.textContent = list.length + ' / ' + allItems.length + ' letters';
+        clearBtn.style.display = hasFilter ? 'flex' : 'none';
+        renderCards(list);
+    }
+
+    function renderCards(items) {
+        grid.innerHTML = '';
+
+        if (items.length === 0) {
+            grid.innerHTML = '<div class="state-box"><i class="bi bi-search"></i><h3>No letters found</h3><p>Try adjusting your search or clearing the filters.</p></div>';
+            return;
         }
 
-        function cleanDisplayName(filename) {
-            return filename.replace(/\.pdf$/i, '').replace(/-Offer Letter$/i, '').trim() + ' · Offer Letter';
-        }
+        items.forEach(function(item) {
+            var fname  = item.path.replace(/^.*\//, '');
+            var parts  = item.path.split('/').map(encodeURIComponent);
+            var rawUrl = RAW_BASE + parts.join('/');
+            var name   = displayName(item.path);
+            var id     = safeId(item.path);
+            var ago    = item.date ? timeAgo(item.date) : '—';
+            var dated  = item.date ? fmtDate(item.date) : 'Fetching…';
+            var newBadge = isNew(item.date) ? '<span class="badge-new">New</span>' : '';
 
-        function renderCards(pdfItems) {
-            if (!grid) return;
-            grid.innerHTML = '';
+            var card = document.createElement('div');
+            card.className = 'pdf-card';
+            card.innerHTML =
+                '<div class="card-pdf-icon"><i class="bi bi-file-pdf-fill"></i></div>' +
+                '<div class="card-title">' + escHtml(name) + newBadge + '</div>' +
+                '<div class="card-filename">' + escHtml(fname) + '</div>' +
+                '<div class="card-meta">' +
+                  '<div class="meta-pill"><i class="bi bi-hdd-stack"></i><span>' + fmtBytes(item.size) + '</span></div>' +
+                  '<div class="meta-pill" id="ago-' + id + '"><i class="bi bi-clock"></i><span>' + ago + '</span></div>' +
+                  '<div class="meta-pill full" id="date-' + id + '"><i class="bi bi-calendar3"></i><span>Uploaded: ' + dated + '</span></div>' +
+                '</div>' +
+                '<a href="' + rawUrl + '" download="' + escHtml(fname) + '" class="dl-btn">' +
+                  '<i class="bi bi-download"></i> Download PDF' +
+                '</a>';
 
-            if (pdfItems.length === 0) {
-                grid.innerHTML = `<div class="alert alert-light border rounded-4 p-4 text-center w-100">No offer letters found. Please refresh later.</div>`;
-                if(liveCountSpan) liveCountSpan.textContent = '0';
-                if(pdfCountDisplay) pdfCountDisplay.textContent = '0';
+            grid.appendChild(card);
+        });
+    }
+
+    function updateCardDate(item) {
+        var id = safeId(item.path);
+        var agoEl  = document.getElementById('ago-'  + id);
+        var dateEl = document.getElementById('date-' + id);
+        if (agoEl)  agoEl.innerHTML  = '<i class="bi bi-clock"></i><span>' + (timeAgo(item.date) || '—') + '</span>';
+        if (dateEl) dateEl.innerHTML = '<i class="bi bi-calendar3"></i><span>Uploaded: ' + fmtDate(item.date) + '</span>';
+    }
+
+    function fetchDate(item) {
+        return fetch(COMMITS_API(item.path))
+            .then(function(r){ return r.ok ? r.json() : []; })
+            .then(function(data){
+                if (data && data[0] && data[0].commit && data[0].commit.committer) {
+                    item.date = data[0].commit.committer.date;
+                    updateCardDate(item);
+                }
+            })
+            .catch(function(){});
+    }
+
+    function batchFetchDates(items, batchSize) {
+        var i = 0;
+        function next() {
+            if (i >= items.length) {
+                // final re-render ensures date-sort is accurate
+                applyAndRender();
                 return;
             }
+            var batch = items.slice(i, i + batchSize);
+            i += batchSize;
+            Promise.all(batch.map(fetchDate)).then(next);
+        }
+        next();
+    }
 
-            // Update counts
-            if(liveCountSpan) liveCountSpan.textContent = pdfItems.length;
-            if(pdfCountDisplay) pdfCountDisplay.textContent = pdfItems.length;
-
-            // Sort alphabetically
-            pdfItems.sort((a, b) => a.name.localeCompare(b.name));
-
-            pdfItems.forEach(item => {
-                const filename = item.name;
-                const rawUrl = item.download_url || (RAW_BASE + encodeURIComponent(filename));
-                const fileSize = item.size ? formatBytes(item.size) : '—';
-                
-                const card = document.createElement('div');
-                card.className = 'pdf-card';
-
-                // Icon
-                const iconDiv = document.createElement('div');
-                iconDiv.className = 'card-icon';
-                iconDiv.innerHTML = '<i class="bi bi-file-pdf-fill"></i>';
-
-                // Title
-                const title = document.createElement('div');
-                title.className = 'pdf-title';
-                title.textContent = cleanDisplayName(filename);
-
-                // Meta line
-                const meta = document.createElement('div');
-                meta.className = 'pdf-meta';
-                meta.innerHTML = `<span><i class="bi bi-hdd-stack me-1"></i>${fileSize}</span>
-                                  <span class="ms-auto"><i class="bi bi-calendar3 me-1"></i>Apr 16, 2026</span>`;
-
-                // Download button (only option)
-                const downloadBtn = document.createElement('a');
-                downloadBtn.href = rawUrl;
-                downloadBtn.download = filename;
-                downloadBtn.className = 'download-btn-card';
-                downloadBtn.innerHTML = '<i class="bi bi-download"></i> Download PDF';
-                downloadBtn.setAttribute('aria-label', `Download ${filename}`);
-
-                // Right-click fallback to GitHub blob (professional extra)
-                card.addEventListener('contextmenu', (e) => {
-                    e.preventDefault();
-                    const githubUrl = `https://github.com/${REPO_OWNER}/${REPO_NAME}/blob/${BRANCH}/${encodeURIComponent(filename)}`;
-                    window.open(githubUrl, '_blank');
+    function fetchAllFiles() {
+        fetch(TREE_API)
+            .then(function(r){
+                if (!r.ok) throw new Error('HTTP ' + r.status);
+                return r.json();
+            })
+            .then(function(data){
+                // data.tree = flat array of every file in the entire repo (all subdirs)
+                var pdfs = (data.tree || []).filter(function(node){
+                    return node.type === 'blob' && node.path.toLowerCase().endsWith('.pdf');
                 });
 
-                card.appendChild(iconDiv);
-                card.appendChild(title);
-                card.appendChild(meta);
-                card.appendChild(downloadBtn);
-                
-                grid.appendChild(card);
+                if (data.truncated) {
+                    showToast('GitHub truncated large tree — some files may be missing. Consider adding a personal access token.', 8000);
+                }
+
+                if (pdfs.length === 0) {
+                    grid.innerHTML = '<div class="state-box"><i class="bi bi-inbox"></i><h3>No PDFs found</h3><p>No PDF files found in the repository.</p></div>';
+                    resultsTag.textContent = '0 letters';
+                    return;
+                }
+
+                allItems = pdfs.map(function(node){
+                    return { path: node.path, size: node.size || null, date: null };
+                });
+
+                totalCount.textContent = allItems.length;
+                applyAndRender();
+
+                // Fetch individual commit dates in parallel batches
+                batchFetchDates(allItems, 5);
+            })
+            .catch(function(err){
+                console.error('Tree API failed:', err);
+                showToast('Could not reach GitHub API — showing cached list.', 6000);
+                fallback();
             });
-        }
+    }
 
-        // Static fallback in case API fails (exact list from repo)
-        function fallbackStaticList() {
-            const staticFiles = [
-                "Anubhab-Offer Letter.pdf", "Deepak-Offer Letter.pdf", "Khageswar-Offer Letter.pdf",
-                "Mehroz-Offer Letter.pdf", "Preeti Sudha-Offer Letter.pdf", "Sagarika-Offer Letter.pdf",
-                "Sambit-Sourav-Offer Letter.pdf", "Sidhartha-Offer Letter.pdf", "Sima-Offer Letter.pdf",
-                "Sneha-Offer Letter.pdf", "Sohan-Offer Letter.pdf", "Subham-Offer Letter.pdf",
-                "Tanmay-Offer Letter.pdf", "Tishika-Offer Letter.pdf"
-            ];
-            const items = staticFiles.map(name => ({
-                name: name,
-                download_url: RAW_BASE + encodeURIComponent(name),
-                size: null
-            }));
-            renderCards(items);
-            console.warn('Using static PDF list (API fallback)');
-            // subtle note
-            const note = document.createElement('div');
-            note.className = 'alert alert-light border mt-4 rounded-4 small fst-italic';
-            note.innerHTML = '<i class="bi bi-info-circle me-2"></i>Displaying from local cache. All offer letters are current.';
-            grid.parentNode.insertBefore(note, grid.nextSibling);
-        }
+    function fallback() {
+var files = [
+    "Anubhab-Offer Letter.pdf",
+    "Bishnu Prasad-Offer Letter.pdf",
+    "Deepak-Offer Letter.pdf",
+    "Gyana Ranjan-Offer Letter.pdf",
+    "Hemanata-Offer Letter.pdf",
+    "Jeeban-Offer Letter.pdf",
+    "Khageswar-Offer Letter.pdf",
+    "Lalit kumar-Offer Letter.pdf",
+    "Mehroz-Offer Letter.pdf",
+    "Mousmit-Offer Letter.pdf",
+    "Prafulla Kumar-Offer Letter.pdf",
+    "Preeti Sudha-Offer Letter.pdf",
+    "Prerana-Offer Letter.pdf",
+    "Sagarika-Offer Letter.pdf",
+    "Sambit-Sourav-Offer Letter.pdf",
+    "Shreyasi-Offer Letter.pdf",
+    "Sidhartha-Offer Letter.pdf",
+    "Sima-Offer Letter.pdf",
+    "Sneha-Offer Letter.pdf",
+    "Sohan-Offer Letter.pdf",
+    "Subham Behera-Offer Letter.pdf",
+    "Subham-Offer Letter.pdf",
+    "Suhangini-Offer Letter.pdf",
+    "Suresh-Offer Letter.pdf",
+    "Swayam-Offer Letter.pdf",
+    "Tanmay-Offer Letter.pdf",
+    "Tishika-Offer Letter.pdf",
+    "Yashraj-Offer Letter.pdf"
+];
+        allItems = files.map(function(f){
+            return { path: f, size: null, date: '2026-04-16T00:00:00Z' };
+        });
+        totalCount.textContent = allItems.length;
+        applyAndRender();
 
-        async function fetchPdfFiles() {
-            try {
-                const response = await fetch(API_URL);
-                if (!response.ok) throw new Error(`Status ${response.status}`);
-                const data = await response.json();
-                const pdfItems = data.filter(item => item.type === 'file' && item.name.toLowerCase().endsWith('.pdf'));
-                renderCards(pdfItems);
-            } catch (error) {
-                console.error('GitHub API error:', error);
-                fallbackStaticList();
-            }
-        }
+        var warn = document.createElement('div');
+        warn.style.cssText = 'grid-column:1/-1;background:#fef3c7;border:1px solid #fcd34d;border-radius:12px;padding:.75rem 1rem;font-size:.82rem;color:#92400e;display:flex;gap:8px;align-items:flex-start;margin-bottom:.5rem;';
+        warn.innerHTML = '<i class="bi bi-exclamation-triangle" style="flex-shrink:0;margin-top:1px;"></i><span>Displaying from hardcoded fallback (GitHub API unreachable). This list may be incomplete. Visit the <a href="https://github.com/AediaX/offer-letter-aediax" target="_blank" style="color:#92400e;font-weight:600;">GitHub repo</a> for all files.</span>';
+        grid.prepend(warn);
+    }
 
-        fetchPdfFiles();
-    })();
+    var debounce;
+    searchInput.addEventListener('input', function(){
+        clearTimeout(debounce);
+        debounce = setTimeout(applyAndRender, 180);
+    });
+    sortSelect.addEventListener('change', applyAndRender);
+    dateFilter.addEventListener('change', applyAndRender);
+    clearBtn.addEventListener('click', function(){
+        searchInput.value = '';
+        dateFilter.value  = 'all';
+        sortSelect.value  = 'name-asc';
+        clearBtn.style.display = 'none';
+        applyAndRender();
+    });
+
+    fetchAllFiles();
+})();
 </script>
 
-<!-- Noscript fallback (clean) -->
 <noscript>
-    <div style="padding:2rem; background:white;">
-        <div class="alert alert-warning rounded-4">JavaScript is required for dynamic loading. Below is the list of offer letters.</div>
-        <h3 class="mt-4">Offer Letter PDFs</h3>
-        <ul class="fallback-list mt-3">
-            <li>Anubhab-Offer Letter.pdf</li><li>Deepak-Offer Letter.pdf</li><li>Khageswar-Offer Letter.pdf</li>
-            <li>Mehroz-Offer Letter.pdf</li><li>Preeti Sudha-Offer Letter.pdf</li><li>Sagarika-Offer Letter.pdf</li>
-            <li>Sambit-Sourav-Offer Letter.pdf</li><li>Sidhartha-Offer Letter.pdf</li><li>Sima-Offer Letter.pdf</li>
-            <li>Sneha-Offer Letter.pdf</li><li>Sohan-Offer Letter.pdf</li><li>Subham-Offer Letter.pdf</li>
-            <li>Tanmay-Offer Letter.pdf</li><li>Tishika-Offer Letter.pdf</li>
-        </ul>
-        <p class="mt-3">View raw files: <a href="https://github.com/AediaX/offer-letter-aediax">GitHub repository</a></p>
-    </div>
+<div style="padding:2rem;max-width:700px;margin:0 auto;font-family:sans-serif;">
+    <div style="background:#fef9c3;border:1px solid #fde047;padding:1rem;border-radius:8px;margin-bottom:1.5rem;">JavaScript is required. Static list below.</div>
+    <h2 style="margin-bottom:1rem;">AediaX Internship 2026 — Offer Letters</h2>
+    <ul style="columns:2;column-gap:2rem;line-height:2;">
+        <li>Anubhab</li><li>Deepak</li><li>Khageswar</li><li>Mehroz</li>
+        <li>Preeti Sudha</li><li>Sagarika</li><li>Sambit Sourav</li><li>Sidhartha</li>
+        <li>Sima</li><li>Sneha</li><li>Sohan</li><li>Subham</li>
+        <li>Tanmay</li><li>Tishika</li>
+    </ul>
+    <p style="margin-top:1rem;font-size:.9rem;">View repo: <a href="https://github.com/AediaX/offer-letter-aediax">github.com/AediaX/offer-letter-aediax</a></p>
+</div>
 </noscript>
 </body>
 </html>
